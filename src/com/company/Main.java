@@ -13,6 +13,5 @@ public class Main {
 
         Wyswietlacz w = new Wyswietlacz();
 
-
 }
 }

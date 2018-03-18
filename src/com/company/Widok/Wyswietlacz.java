@@ -1,12 +1,15 @@
 package com.company.Widok;
 
 import com.company.Model.Gracz;
+import com.company.Model.Pole;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+
 
 
 public class Wyswietlacz implements ActionListener {
@@ -14,222 +17,253 @@ public class Wyswietlacz implements ActionListener {
     JPanel panel;
     JFrame ramka;
 
-    JButton b11;
-    JButton b12;
-    JButton b13;
-    JButton b21;
-    JButton b22;
-    JButton b23;
-    JButton b31;
-    JButton b32;
-    JButton b33;
+    JTextField imie1;
+    JTextField imie2;
+    String im1;
+    String im2;
+    JLabel label2;
+
+    Gracz gracz1;
+    Gracz gracz2;
+    ArrayList<JButton> guziki = new ArrayList<>();
+    ArrayList<Pole> stanPol = new ArrayList<>();
+    ArrayList<Gracz> gracz = new ArrayList<>();
+
+
     //public int numerGracza = 1;
     int numerGracza;
 
     String StanGry[][];
+    String pola[];
 
     public Wyswietlacz() {
         ramkaSet();
         buttonSet();
         actionListeneradd();
         numerGracza = 1;
+        imionaGraczy();
+        pola();
+        nameSet();
+    }
+
+    public void nameSet() {
+        gracz1 = new Gracz("Adam");
+        gracz2 = new Gracz("Artur");
+        System.out.println("Oto imiona - gracz1 -  " + gracz1.getImie() + "  gracz2 -  " + gracz2.getImie());
+
     }
 
     public void buttonSet() {
-        b11 = new JButton(" ");
-        b12 = new JButton(" ");
-        b13 = new JButton(" ");
-        b21 = new JButton(" ");
-        b22 = new JButton(" ");
-        b23 = new JButton(" ");
-        b31 = new JButton(" ");
-        b32 = new JButton(" ");
-        b33 = new JButton(" ");
 
-        panel.add(b11);
-        panel.add(b12);
-        panel.add(b13);
-        panel.add(b21);
-        panel.add(b22);
-        panel.add(b23);
-        panel.add(b31);
-        panel.add(b32);
-        panel.add(b33);
+        for (int i = 0; i < 9; i++) {
+            guziki.add(new JButton());
+            panel.add(guziki.get(i));
+        }
 
     }
 
     public void actionListeneradd() {
 
-        b11.addActionListener(this);
-        b12.addActionListener(this);
-        b13.addActionListener(this);
-        b21.addActionListener(this);
-        b22.addActionListener(this);
-        b23.addActionListener(this);
-        b31.addActionListener(this);
-        b32.addActionListener(this);
-        b33.addActionListener(this);
+
+        for (int i = 0; i < 9; i++) {
+            guziki.get(i).addActionListener(this);
+        }
+
+    }
+
+    public void imionaGraczy() {
+        JFrame ramka2 = new JFrame("Wpisz imiona Graczy");
+        JPanel panel2 = new JPanel(new GridBagLayout());
+        ramka2.setVisible(true);
+        ramka2.add(panel2);
+        ramka2.setSize(500, 500);
+        ramka2.setLocation(100, 100);
+        ramka2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ramka2.toFront();
+
+        // ramka2.setResizable(false);
+        GridBagConstraints c = new GridBagConstraints();
+
+        JLabel l1 = new JLabel("Wpisz imiona");
+        panel2.add(l1);
+        l1.setFont(new Font("Arial", Font.BOLD, 16));
+        // l1.setBounds(50,50,100,25);
+
+        c.fill = GridBagConstraints.VERTICAL;
+        //c.weightx = 0;
+        c.gridx = 1;
+        c.gridy = 0;
+        // c.weighty = 0.1;
+        c.anchor = GridBagConstraints.PAGE_END;
+        // c.insets = new Insets(0,0,1,1);
+        //c.insets = new Insets(0, 0, 0, 0);
+        //+c.gridwidth = 50;
+        panel2.add(l1, c);
+
+        JLabel i1 = new JLabel("Gracz 1");
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weighty = 0;
+        //c.weightx = 1;
+        c.ipadx = 50;
+        panel2.add(i1, c);
+
+        imie1 = new JTextField(25);
+        imie1.setSize(25, 50);
+        //c.weightx=0;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.ipady = 10;
+        panel2.add(imie1, c);
+
+        JLabel i2 = new JLabel("Gracz 2");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        panel2.add(i2, c);
+
+        imie2 = new JTextField(25);
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 2;
+        c.weightx = 0;
+        panel2.add(imie2, c);
+
+
+        JButton b1 = new JButton("OK");
+
+        c.gridx = 1;
+        c.gridy = 3;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.ipady = 10;
+        c.ipadx = 10;
+        panel2.add(b1, c);
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                im1 = imie1.getText();
+                im2 = imie2.getText();
+                System.out.println("Imie 1 - "+im1);
+                System.out.println("Imie 2 -  "+im2);
+                if (im2 == null){
+                    System.out.println("Nie wpisales imienia 2");
+                }
+                ramka2.dispose();
+            }
+        });
     }
 
     public void ramkaSet() {
         ramka = new JFrame("GRA");
+        ramka.setLayout(new BorderLayout());
         panel = new JPanel();
-        ramka.add(panel);
+        JPanel p1 = new JPanel(new GridLayout(2, 1,50,50));
+        JLabel label = new JLabel("GRA");
+        label2 = new JLabel("Kolej Gracza - ");
+
+        ramka.add(panel, BorderLayout.CENTER);
         ramka.setVisible(true);
         ramka.setSize(500, 500);
-       panel.setLayout(new GridLayout(3, 3));
+        ramka.add(p1, BorderLayout.NORTH);
+
+        p1.add(label);
+        p1.add(label2);
+
+        panel.setLayout(new GridLayout(3, 3));
+        //panel.add(label);
+        p1.setLayout(new GridLayout(2, 1));
+
+        ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ramka.setLocation(150, 150);
     }
+
+    public void buttonClick(JButton button, int numerGracza) {
+        if (numerGracza == 1) {
+            button.setText("X");
+        } else {
+            button.setText("O");
+        }
+        ZmienTure();
+        scann();
+
+    }
+
+    public void pola() {
+        for (int i = 0; i < 9; i++) {
+            stanPol.add(new Pole("0"));
+            System.out.println("Oto element tablict StanPol - " + i + "    " + stanPol.get(i).getSymbol() + "  ;   ");
+        }
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Wcisnales przycisk");
-        System.out.println("Oto numer gracza - "+numerGracza);
+        System.out.println("Oto numer gracza - " + numerGracza);
 
+        buttonClick((JButton) e.getSource(), numerGracza);
+        System.out.println(" Oto element z action listenera - " + (JButton) e.getSource());
+    }
+
+
+    public void ZmienTure() {
         if (numerGracza == 1) {
-            if (e.getSource() == b11) {
-                b11.setText("X");
-            }
-            if (e.getSource() == b12) {
-                b12.setText("X");
-            }
-            if (e.getSource() == b13) {
-                b13.setText("X");
-
-            }
-            if (e.getSource() == b21) {
-                b21.setText("X");
-
-            }
-            if (e.getSource() == b22) {
-                b22.setText("X");
-            }
-            if (e.getSource() == b23) {
-                b23.setText("X");
-            }
-            if (e.getSource() == b31) {
-                b31.setText("X");
-            }
-            if (e.getSource() == b32) {
-                b32.setText("X");
-
-            }
-            if (e.getSource() == b33) {
-                b33.setText("X");
-
-            }
-        }
-
-        if (numerGracza == 2) {
-            if (e.getSource() == b11) {
-                b11.setText("O");
-
-            }
-            if (e.getSource() == b12) {
-                b12.setText("O");
-
-            }
-            if (e.getSource() == b13) {
-                b13.setText("O");
-
-            }
-            if (e.getSource() == b21) {
-                b21.setText("O");
-
-            }
-            if (e.getSource() == b22) {
-                b22.setText("O");
-
-            }
-            if (e.getSource() == b23) {
-                b23.setText("O");
-
-            }
-            if (e.getSource() == b31) {
-                b31.setText("O");
-
-            }
-            if (e.getSource() == b32) {
-                b32.setText("O");
-
-            }
-            if (e.getSource() == b33) {
-                b33.setText("O");
-
-            }
-        }
-        if (numerGracza ==1 ){
-            numerGracza =2;
+            numerGracza = 2;
             System.out.println("Zmienilem gracza na 2");
-        }
-        else {
+            label2.setText("Kolej Gracza numer 2");
+        } else {
             numerGracza = 1;
+            label2.setText("Kolej Gracza numer 1");
         }
-        scann();
+    }
 
-        //numerGracza = g.zmianaGracza(numerGracza);
+    public void scan2() {
 
     }
 
-    @Override
-    public String toString() {
-        return "Wyswietlacz{" +
-                "StanGry=" + Arrays.toString(StanGry) +
-                '}';
-    }
 
     public void scann() {
         System.out.println("Wykonalem SCANN");
-        String str;
+        // String str;
 
-        StanGry = new String[3][3];
-        StanGry[0][0] = b11.getText();
-        StanGry[0][1] = b12.getText();
-        StanGry[0][2] = b13.getText();
-        StanGry[1][0] = b13.getText();
-        StanGry[1][1] = b13.getText();
-        StanGry[1][2] = b13.getText();
-        StanGry[2][0] = b13.getText();
-        StanGry[2][1] = b13.getText();
-        StanGry[2][2] = b13.getText();
 
-System.out.println ("oto element tablicy b11 -  "+StanGry[0][0]);
-        System.out.println ("oto element tablicy b11 -  "+StanGry[0][0]);
-        System.out.println ("oto element tablicy b12 -  "+StanGry[0][1]);
-        System.out.println ("oto element tablicy b13 -  "+StanGry[0][2]);
-        str = toString();
-        System.out.println("Oto stan tablicy -  "+str);
+        // StanGry = new String[3][3];
+        pola = new String[9];
 
-        if (StanGry[0][0] == StanGry[0][1] && StanGry[0][1] == StanGry[0][2]) {
-            System.out.println("Wygrane");
-
+        for (int i = 0; i < 9; i++) {
+            pola[i] = guziki.get(i).getText();
         }
 
-/*
-        if (StanGry[2][1] == StanGry[2][2] && StanGry[2][2] == StanGry[2][3]) {
-            System.out.println("Wygrane");
-
+        //pola = guziki.toArray(pola);
+        for (int i = 0; i < 9; i++) {
+            System.out.println("Oto element tablica pola - numer - " + i + "   " + pola[i] + "   ;   ");
         }
-
-        if (StanGry[3][1] == StanGry[1][2] && StanGry[1][2] == StanGry[1][3]) {
-            System.out.println("Wygrane");
-
+        if (pola[0] == pola[1] && pola[1] == pola[2] && pola[0].equals("X")) {
+            System.out.println("WYGRANE - linia pozioma 1");
         }
-
-        if (StanGry[1][1] == StanGry[2][2] && StanGry[2][2] == StanGry[3][3]) {
-            System.out.println("Wygrane");
-
+        if (pola[3] == pola[4] && pola[4] == pola[5] && pola[3].equals("X")) {
+            System.out.println("WYGRANE - linia pozioma 2");
         }
-
-
-        if (StanGry[1][3] == StanGry[2][2] && StanGry[2][2] == StanGry[3][1]) {
-            System.out.println("Wygrane");
-
+        if (pola[6] == pola[7] && pola[7] == pola[8] && pola[6].equals("X")) {
+            System.out.println("WYGRANE - linia pozioma 3");
         }
-        */
+        if (pola[0] == pola[3] && pola[3] == pola[6] && pola[0].equals("X")) {
+            System.out.println("WYGRANE - linia pionowa 1");
+        }
+        if (pola[1] == pola[4] && pola[4] == pola[7] && pola[1].equals("X")) {
+            System.out.println("WYGRANE - linia pionowa 2");
+        }
+        if (pola[2] == pola[5] && pola[5] == pola[8] && pola[2].equals("X")) {
+            System.out.println("WYGRANE - linia pionowa 3");
+        }
+        if (pola[0] == pola[4] && pola[4] == pola[8] && pola[0].equals("X")) {
+            System.out.println("WYGRANE - linia skosna");
+        }
     }
 
 }
-
 
 
 
