@@ -1,8 +1,9 @@
 package com.company.Model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
-public class Pole {
+public class Pole extends JButton{
     boolean zajete = false;
     String symbol;
 
@@ -10,11 +11,23 @@ public class Pole {
         this.symbol = symbol;
     }
 
-    public void poleZajete (Pole pole){
+    public Pole() {
+        super();
+    }
+
+    public void poleZajete (){
         this.zajete = true;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public void poleWolne (){
+        this.zajete = false;
+    }
+
+    public boolean isZajete() {
+        return zajete;
+    }
+
+    public void setZajete(boolean zajete) {
+        this.zajete = zajete;
     }
 }
