@@ -30,14 +30,12 @@ public class Wyswietlacz implements ActionListener {
     Pole[][] buttons = new Pole[3][3];
     ImageIcon ikona = new ImageIcon("C:/Users/Tomas/Desktop/Pingwin.jpg");
     int liczbaWolnych = 9;
-    //LiczbaWolnych l = new LiczbaWolnych(liczbaWolnych);
 
     int numerGracza;
 
     public Wyswietlacz() {
         numerGracza = 1;
         imionaGraczy();
-
     }
 
 
@@ -51,7 +49,6 @@ public class Wyswietlacz implements ActionListener {
             }
             System.out.println("przyciski ustawione");
         }
-
     }
 
     public void actionListeneradd() {
@@ -83,15 +80,7 @@ public class Wyswietlacz implements ActionListener {
         c.gridy = 0;
         c.anchor = GridBagConstraints.PAGE_END;
         panel2.add(l1, c);
-/*
-        JLabel l2 = new JLabel("Haslo");
-        l2.setFont(new Font("Arial", Font.BOLD, 16));
-        c.fill = GridBagConstraints.VERTICAL;
-        c.gridx = 2;
-        c.gridy = 0;
-        c.anchor = GridBagConstraints.PAGE_END;
-        panel2.add(l2, c);
-*/
+
         JLabel i1 = new JLabel("Gracz 1");
         c.gridx = 0;
         c.gridy = 1;
@@ -104,49 +93,27 @@ public class Wyswietlacz implements ActionListener {
         c.gridy = 2;
         panel2.add(i2, c);
 
-        imie1 = new JTextField(25);
-      //  imie1.setSize(25, 50);
-        //c.weightx=0;
+        imie1 = new JTextField(15);
         c.gridx = 1;
         c.gridy = 1;
         c.ipady = 10;
         c.ipadx = 0;
-        c.weightx = 1;
+        c.weightx = 0;
         panel2.add(imie1, c);
-/*
-        JPasswordField p1 = new JPasswordField(25);
-        c.gridx = 2;
-        c.gridy = 1;
-        c.ipady = 10;
-        panel2.add(p1, c);
 
-        JLabel i2 = new JLabel("Gracz 2");
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 2;
-        panel2.add(i2, c);
-*/
-        imie2 = new JTextField(25);
+        imie2 = new JTextField(15);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
-        c.weightx = 1;
+        c.weightx = 0;
         panel2.add(imie2, c);
-/*
-        JPasswordField p2 = new JPasswordField(25);
-        c.gridx = 2;
-        c.gridy = 2;
-        c.ipady = 10;
-        panel2.add(p2, c);
-*/
-
 
         JButton b1 = new JButton("Log in");
 
         c.gridx = 1;
         c.gridy = 3;
-        c.weightx = 10;
+        c.weightx = 0;
         c.weighty = 0;
         c.ipady = 10;
         c.ipadx = 1;
@@ -176,27 +143,7 @@ public class Wyswietlacz implements ActionListener {
                 }
             }
         });
-/*
-        JMenuBar jmb = new JMenuBar();
-        JMenuItem jmFile = new JMenu("Opcje");
-        JMenuItem jmOpen = new JMenuItem("Ranking");
-        JMenuItem jmClose = new JMenuItem("Dodaj gracza");
-        JMenuItem jmSave = new JMenuItem("Usun gracza");
 
-        jmFile.add(jmOpen);
-
-        jmFile.add(jmClose);
-        jmFile.add(jmSave);
-        jmb.add(jmFile);
-
-        c.gridx = 1;
-        c.gridy = 5;
-        c.weightx = 0;
-        c.weighty = 0;
-        c.ipady = 20;
-        c.ipadx = 1;
-        panel2.add(jmb, c);
-*/
         ramka.repaint();
         ramka.validate();
 
@@ -394,70 +341,6 @@ public class Wyswietlacz implements ActionListener {
                 (buttons[0][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][2].getText().equals("X"))||
                 (buttons[0][2].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][0].getText().equals("X"));
 
-       /* if (buttons[1][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 2 linia pozioma");
-        }
-        if (buttons[2][0].getText().equals("X") && buttons[2][1].getText().equals("X") && buttons[2][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 3 linia pozioma");
-        }
-        if (buttons[0][0].getText().equals("X") && buttons[1][0].getText().equals("X") && buttons[2][0].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 1 linia pionowa");
-        }
-        if (buttons[0][1].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 2 linia pionowa");
-        }
-        if (buttons[0][2].getText().equals("X") && buttons[1][2].getText().equals("X") && buttons[2][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 3 linia pionowa");
-        }
-        if (buttons[0][0].getText().equals("X") && buttons[0][1].getText().equals("X") && buttons[0][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 1 linia pozioma");
-        }
-        if (buttons[1][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 2 linia pozioma");
-        }
-        if (buttons[2][0].getText().equals("X") && buttons[2][1].getText().equals("X") && buttons[2][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - 3 linia pozioma");
-        }
-        if (buttons[0][0].getText().equals("O") && buttons[1][0].getText().equals("O") && buttons[2][0].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 1 linia pionowa");
-        }
-        if (buttons[0][1].getText().equals("O") && buttons[1][1].getText().equals("O") && buttons[1][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 2 linia pionowa");
-        }
-        if (buttons[0][2].getText().equals("O") && buttons[1][2].getText().equals("O") && buttons[2][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 3 linia pionowa");
-        }
-        if (buttons[1][0].getText().equals("O") && buttons[1][1].getText().equals("O") && buttons[1][2].getText().equals("O")){
-            System.out.println("Wygral gracz 1 - 1 linia pionowa");
-        }
-        if (buttons[2][0].getText().equals("O") && buttons[2][1].getText().equals("O") && buttons[1][2].getText().equals("O")){
-            System.out.println("Wygral gracz 1 - 2 linia pionowa");
-        }
-        if (buttons[0][2].getText().equals("O") && buttons[1][2].getText().equals("O") && buttons[2][2].getText().equals("O")){
-            System.out.println("Wygral gracz 1 - 3 linia pionowa");
-        }
-        if (buttons[0][0].getText().equals("O") && buttons[0][1].getText().equals("O") && buttons[0][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 1 linia pozioma");
-        }
-        if (buttons[1][0].getText().equals("O") && buttons[1][1].getText().equals("O") && buttons[1][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 2 linia pozioma");
-        }
-        if (buttons[2][0].getText().equals("O") && buttons[2][1].getText().equals("O") && buttons[2][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - 3 linia pozioma");
-        }
-        if (buttons[0][0].getText().equals("O") && buttons[1][1].getText().equals("O") && buttons[2][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 -  linia skosna ");
-        }
-        if (buttons[2][0].getText().equals("O") && buttons[1][1].getText().equals("O") && buttons[0][2].getText().equals("O")){
-            System.out.println("Wygral gracz 2 - linia skosna");
-        }
-        if (buttons[0][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - linia skosna");
-        }
-        if (buttons[2][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[0][2].getText().equals("X")){
-            System.out.println("Wygral gracz 1 - linia skosna");
-        }
-        */
     }
 
 }

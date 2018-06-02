@@ -18,5 +18,5 @@ public class Main {
         lista.sortArray();
         lista.wyswietlPosortowane();
 
-}
+    }
 }
