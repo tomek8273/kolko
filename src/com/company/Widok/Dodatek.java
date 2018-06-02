@@ -11,7 +11,4 @@ public class Dodatek {
         jmFile.add(jmOpen);
         jmb.add(jmFile);
     }
-
-
-
 }

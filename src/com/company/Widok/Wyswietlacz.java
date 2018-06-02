@@ -17,6 +17,7 @@ public class Wyswietlacz implements ActionListener {
     JFrame ramka2;
     JPanel p1;
 
+
     JTextField imie1;
     JTextField imie2;
     String im1;
@@ -73,7 +74,7 @@ public class Wyswietlacz implements ActionListener {
 
         GridBagConstraints c = new GridBagConstraints();
 
-        JLabel l1 = new JLabel("Wpisz imiona");
+        JLabel l1 = new JLabel("Wpisz imiona graczy");
         panel2.add(l1);
         l1.setFont(new Font("Arial", Font.BOLD, 16));
 
@@ -82,21 +83,20 @@ public class Wyswietlacz implements ActionListener {
         c.gridy = 0;
         c.anchor = GridBagConstraints.PAGE_END;
         panel2.add(l1, c);
-
+/*
+        JLabel l2 = new JLabel("Haslo");
+        l2.setFont(new Font("Arial", Font.BOLD, 16));
+        c.fill = GridBagConstraints.VERTICAL;
+        c.gridx = 2;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.PAGE_END;
+        panel2.add(l2, c);
+*/
         JLabel i1 = new JLabel("Gracz 1");
         c.gridx = 0;
         c.gridy = 1;
         c.weighty = 0;
-        c.ipadx = 50;
         panel2.add(i1, c);
-
-        imie1 = new JTextField(25);
-        imie1.setSize(25, 50);
-        //c.weightx=0;
-        c.gridx = 1;
-        c.gridy = 1;
-        c.ipady = 10;
-        panel2.add(imie1, c);
 
         JLabel i2 = new JLabel("Gracz 2");
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -104,23 +104,52 @@ public class Wyswietlacz implements ActionListener {
         c.gridy = 2;
         panel2.add(i2, c);
 
+        imie1 = new JTextField(25);
+      //  imie1.setSize(25, 50);
+        //c.weightx=0;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.ipady = 10;
+        c.ipadx = 0;
+        c.weightx = 1;
+        panel2.add(imie1, c);
+/*
+        JPasswordField p1 = new JPasswordField(25);
+        c.gridx = 2;
+        c.gridy = 1;
+        c.ipady = 10;
+        panel2.add(p1, c);
+
+        JLabel i2 = new JLabel("Gracz 2");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        panel2.add(i2, c);
+*/
         imie2 = new JTextField(25);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
-        c.weightx = 0;
+        c.weightx = 1;
         panel2.add(imie2, c);
+/*
+        JPasswordField p2 = new JPasswordField(25);
+        c.gridx = 2;
+        c.gridy = 2;
+        c.ipady = 10;
+        panel2.add(p2, c);
+*/
 
 
-        JButton b1 = new JButton(ikona);
+        JButton b1 = new JButton("Log in");
 
         c.gridx = 1;
         c.gridy = 3;
-        c.weightx = 0;
+        c.weightx = 10;
         c.weighty = 0;
         c.ipady = 10;
-        c.ipadx = 10;
+        c.ipadx = 1;
         panel2.add(b1, c);
         ramka.repaint();
         ramka.validate();
@@ -147,8 +176,83 @@ public class Wyswietlacz implements ActionListener {
                 }
             }
         });
-    }
+/*
+        JMenuBar jmb = new JMenuBar();
+        JMenuItem jmFile = new JMenu("Opcje");
+        JMenuItem jmOpen = new JMenuItem("Ranking");
+        JMenuItem jmClose = new JMenuItem("Dodaj gracza");
+        JMenuItem jmSave = new JMenuItem("Usun gracza");
 
+        jmFile.add(jmOpen);
+
+        jmFile.add(jmClose);
+        jmFile.add(jmSave);
+        jmb.add(jmFile);
+
+        c.gridx = 1;
+        c.gridy = 5;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.ipady = 20;
+        c.ipadx = 1;
+        panel2.add(jmb, c);
+*/
+        ramka.repaint();
+        ramka.validate();
+
+    }
+    public void imiona2(){
+        System.out.println("Ustawiam ramke3");
+        JFrame ramka3 = new JFrame();
+        ramka3.setLayout(new BorderLayout());
+        JPanel panel4 = new JPanel();
+        ramka3.add(panel4);
+        ramka3.setVisible(true);
+        ramka3.setSize(500, 500);
+
+        panel4.setLayout(new GridLayout(2, 3));
+        panel4.setSize(200,200);
+        ramka3.add(panel4, BorderLayout.CENTER);
+        JLabel i1 = new JLabel ("imie 1");
+        JTextField i11 = new JTextField(25);
+        JTextField i22 = new JTextField(25);
+        JLabel i2 = new JLabel ("imie 2");
+        JPasswordField p1 = new JPasswordField(25);
+        JPasswordField p2 = new JPasswordField(25);
+        panel4.add(i1);
+        panel4.add(i11);
+        panel4.add(p1);
+        panel4.add(i2);
+        panel4.add(i22);
+        panel4.add(p2);
+
+        JMenuBar jmb = new JMenuBar();
+        JMenuItem jmFile = new JMenu("Plik");
+        JMenuItem jmOpen = new JMenuItem("ranking");
+        JMenuItem jmClose = new JMenuItem("dodaj gracza");
+        JMenuItem jmSave = new JMenuItem("usun gracza");
+
+        jmFile.add(jmOpen);
+
+        jmFile.add(jmClose);
+        jmFile.add(jmSave);
+        jmb.add(jmFile);
+        jmb.add(jmFile);
+        jmOpen.addActionListener(this);
+
+        JPanel panel6 = new JPanel();
+        panel6.add(jmb);
+        panel6.setLayout(new FlowLayout());
+        ramka3.add(panel6, BorderLayout.NORTH);
+
+        JButton button = new JButton("OK");
+        button.setSize(20,20);
+        ramka3.add(button, BorderLayout.SOUTH);
+
+        ramka3.repaint();
+        ramka3.validate();
+
+    }
 
     public void ramkaSet() {
 
@@ -282,7 +386,14 @@ public class Wyswietlacz implements ActionListener {
     public boolean wygrany() {
         System.out.println("Wykonalem SCANN");
         return (buttons[0][0].getText().equals("X") && buttons[0][1].getText().equals("X") && buttons[0][2].getText().equals("X"))||
-                (buttons[1][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X"));
+                (buttons[1][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X"))||
+                (buttons[2][0].getText().equals("X") && buttons[2][1].getText().equals("X") && buttons[2][2].getText().equals("X"))||
+                (buttons[0][0].getText().equals("X") && buttons[1][0].getText().equals("X") && buttons[2][0].getText().equals("X"))||
+                (buttons[0][1].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][1].getText().equals("X"))||
+                (buttons[0][2].getText().equals("X") && buttons[1][2].getText().equals("X") && buttons[2][2].getText().equals("X"))||
+                (buttons[0][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][2].getText().equals("X"))||
+                (buttons[0][2].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[2][0].getText().equals("X"));
+
        /* if (buttons[1][0].getText().equals("X") && buttons[1][1].getText().equals("X") && buttons[1][2].getText().equals("X")){
             System.out.println("Wygral gracz 1 - 2 linia pozioma");
         }
